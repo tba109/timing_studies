@@ -4,11 +4,12 @@ import numpy as np
 import GenPulseClass
 import matplotlib.pyplot as plt
 import DigDiscClass
+import WaveFormNoiser
 from scipy.optimize import curve_fit
 
 # Waveform parameters
-# fsps = np.array([10.])
-fsps = np.arange(1.,11.,1.)
+# fsps = np.array([1.])
+fsps = np.arange(1.,11.,0.5)
 Nwaves = 10000
 v0 = 0.
 # v1 = np.arange(10.,110.,10.)
@@ -19,6 +20,7 @@ trise = np.array([10.])
 ton = 10.
 tfall = 10.
 sigma_v = np.arange(0.1,1,0.1)
+# sigma_v = np.array([.1])
 vthr = 5.
 
 ddc = DigDiscClass.DigDiscClass(vthr)
@@ -28,22 +30,23 @@ fout = open('out.txt','w')
 
 sigma_t = np.zeros(len(sigma_v))
 for n in range(len(fsps)):
-    x = np.arange(0,20,1./fsps[n],dtype=float)
     for m in range(len(v1)):
         for k in range(len(trise)):
-            gpc = GenPulseClass.GenPulseClass(v0,v1[m],tdelay,trise[k],ton,tfall)
             for j in range(len(sigma_v)):
-                # Generate the waveforms
                 for i in range(Nwaves): 
-                    y = np.array([gpc.eval(xi) + np.random.normal(0,sigma_v[j]) for xi in x])
+                    # Horizontal array
+                    wfn = WaveFormNoiser.WaveFormNoiser(sigma_v[j],fsps[n])
+                    x = np.arange(0,20,1./fsps[n],dtype=float)
+                    x = wfn.smear_t(x)
+                    gpc = GenPulseClass.GenPulseClass(v0,v1[m],tdelay,trise[k],ton,tfall)
+                    y = np.array([gpc.eval(xi) for xi in x])
+                    y = wfn.smear_v(y)
                     tdisc[i] = ddc.disc(x,y)
                     # print tdisc[i]
-                    # y = np.array([gpc.eval(xi)  for xi in x])
                     # print x
                     # print y
-                    # plt.plot(x,y)
+                    # plt.plot(x,y,'o-')
                     # plt.show()
-
                 mu = np.mean(tdisc)
                 sigma = np.std(tdisc)
                 sigma_t[j] = sigma
@@ -59,9 +62,9 @@ for n in range(len(fsps)):
 
         popt,pcov = curve_fit(f,sigma_v[3:-1],sigma_t[3:-1])
         print popt
-        # plt.plot(sigma_v,sigma_t,'o-')
-        # plt.plot(sigma_v,f(sigma_v,popt[0],popt[1]),'r-')
-        # plt.show()
+        plt.plot(sigma_v,sigma_t,'o-')
+        plt.plot(sigma_v,f(sigma_v,popt[0],popt[1]),'r-')
+        plt.show()
 
-        strout = '%f %f,%f,%f,%f\n' % (fsps[n],v1[m],trise[k],popt[0],popt[1])
+        strout = '%f,%f,%f,%f,%f\n' % (fsps[n],v1[m],trise[k],popt[0],popt[1])
         fout.write(strout)
