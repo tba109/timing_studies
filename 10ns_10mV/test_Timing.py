@@ -10,9 +10,9 @@ from scipy.optimize import curve_fit
 
 # Waveform parameters
 # fsps = np.array([1.])
-fsps = np.arange(1.,11.,1.)
+# fsps = np.arange(1.,11.,1.)
 # fsps = [10.]
-# fsps = [1.]
+fsps = [1.]
 Nwaves = 10000
 v0 = 0.
 # v1 = np.arange(10.,110.,10.)
@@ -47,7 +47,7 @@ for n in range(len(fsps)):
         for k in range(len(trise)):
             npts = int((trise[k]/2)*fsps[n]*.8)
             dic = DigInterpClass.DigInterpClass(vthr,npts)
-            # print npts
+            print npts
             for j in range(len(sigma_v)):
                 for i in range(Nwaves): 
                     # Horizontal array
