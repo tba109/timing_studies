@@ -16,7 +16,7 @@ class LpfClass:
     def lpfFirstOrder(self,x,tau=2.,fsps=10.):
         alpha = 1-np.exp(-1./(fsps*tau))
         y = np.zeros(len(x))
-        print alpha
+        # print alpha
         for i in range(len(x)): 
             if(i == 0): 
                 y[i] = x[i]
