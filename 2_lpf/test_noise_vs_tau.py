@@ -46,9 +46,24 @@ for i in range(len(tau)):
     lpf = LpfClass.LpfClass()
     y2 = lpf.lpfFirstOrder(y,tau[i],fsps[0])
     
+    # Time domain
     # plt.plot(x,y,'o-',color='b')
     # plt.plot(x,y2,'o-',color='r')
     # plt.show()
+
+    # Frequency domain
+    freq = np.fft.fftfreq(len(y))
+    y_fft = np.fft.fft(y)/len(y)
+    freq2 = np.fft.fftfreq(len(y2))
+    y2_fft = np.fft.fft(y2)/len(y2)
+    plt.plot(freq,abs(y_fft),color='b')
+    plt.plot(freq2,abs(y2_fft),color='r')
+    plt.xlim(0,max(freq))
+    plt.xscale('log')
+    plt.yscale('log')
+    plt.show()
+#     print 
+
 
     sigma_y[i] = np.std(y)
     sigma_y2[i] = np.std(y2)
@@ -64,3 +79,9 @@ plt.semilogx(tau,[100*sy2/sy for (sy,sy2) in zip(sigma_y,sigma_y2)],'o-')
 plt.show()
 
 # Looks like the answer is an LPF creates a fixed percent noise reduction with amplitude
+
+####
+# Now let's create an FFT for the RMS noise
+y_fft = np.fft.fft(y)/len(y)
+plt.plot(abs(y_fft))
+plt.show()
