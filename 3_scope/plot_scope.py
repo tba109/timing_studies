@@ -15,9 +15,9 @@ from ROOT import TH1F, TF1
 
 # directory = '/home/tyler/pingudata/1200v/' # 10GSPS 
 directory = '/home/tyler/pingudata/1300v/' # 10GSPS
-NCNT = 10  # Number of triggers to collect
+NCNT = 1000  # Number of triggers to collect
 TAU = 8.     # First order analog filter time constant (ns)
-FGSPS = 0.25 # Sample rate (GSPS)
+FGSPS = 0.5  # Sample rate (GSPS)
 VTHR = -2.0  # Discriminator threshold (mV)
 NAVG1 = 2    # Box car averager 1 number of samples
 CFDD = 2     # CFD delay in clock cycles 

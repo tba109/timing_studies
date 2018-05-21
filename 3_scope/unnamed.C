@@ -1,0 +1,125 @@
+void unnamed()
+{
+//=========Macro generated from canvas: c1/c1
+//=========  (Mon May 21 19:32:00 2018) by ROOT version 6.12/06
+   TCanvas *c1 = new TCanvas("c1", "c1",65,52,700,500);
+   c1->SetHighLightColor(2);
+   c1->Range(-50,-7.087501,50,63.7875);
+   c1->SetFillColor(0);
+   c1->SetBorderMode(0);
+   c1->SetBorderSize(2);
+   c1->SetFrameBorderMode(0);
+   c1->SetFrameBorderMode(0);
+   
+   TH1F *h1__1 = new TH1F("h1__1","",400,-40,40);
+   h1__1->SetBinContent(248,1);
+   h1__1->SetBinContent(253,1);
+   h1__1->SetBinContent(255,5);
+   h1__1->SetBinContent(256,10);
+   h1__1->SetBinContent(257,19);
+   h1__1->SetBinContent(258,38);
+   h1__1->SetBinContent(259,28);
+   h1__1->SetBinContent(260,48);
+   h1__1->SetBinContent(261,51);
+   h1__1->SetBinContent(262,54);
+   h1__1->SetBinContent(263,54);
+   h1__1->SetBinContent(264,51);
+   h1__1->SetBinContent(265,27);
+   h1__1->SetBinContent(266,29);
+   h1__1->SetBinContent(267,17);
+   h1__1->SetBinContent(268,19);
+   h1__1->SetBinContent(269,12);
+   h1__1->SetBinContent(270,11);
+   h1__1->SetBinContent(271,8);
+   h1__1->SetBinContent(272,14);
+   h1__1->SetBinContent(273,11);
+   h1__1->SetBinContent(274,10);
+   h1__1->SetBinContent(275,8);
+   h1__1->SetBinContent(276,5);
+   h1__1->SetBinContent(277,10);
+   h1__1->SetBinContent(278,2);
+   h1__1->SetBinContent(279,5);
+   h1__1->SetBinContent(280,2);
+   h1__1->SetBinContent(281,2);
+   h1__1->SetBinContent(282,3);
+   h1__1->SetBinContent(283,1);
+   h1__1->SetBinContent(284,1);
+   h1__1->SetBinContent(285,1);
+   h1__1->SetBinContent(286,1);
+   h1__1->SetBinContent(288,2);
+   h1__1->SetBinContent(289,3);
+   h1__1->SetBinContent(292,1);
+   h1__1->SetBinContent(296,3);
+   h1__1->SetBinContent(297,1);
+   h1__1->SetBinContent(298,1);
+   h1__1->SetBinContent(299,3);
+   h1__1->SetBinContent(300,2);
+   h1__1->SetEntries(575);
+   
+   TF1 *f11 = new TF1("f1","gaus",-40,40, TF1::EAddToList::kNo);
+   f11->SetFillColor(19);
+   f11->SetFillStyle(0);
+   f11->SetLineColor(2);
+   f11->SetLineWidth(2);
+   f11->SetChisquare(109.7244);
+   f11->SetNDF(39);
+   f11->GetXaxis()->SetLabelFont(42);
+   f11->GetXaxis()->SetLabelSize(0.035);
+   f11->GetXaxis()->SetTitleSize(0.035);
+   f11->GetXaxis()->SetTitleFont(42);
+   f11->GetYaxis()->SetLabelFont(42);
+   f11->GetYaxis()->SetLabelSize(0.035);
+   f11->GetYaxis()->SetTitleSize(0.035);
+   f11->GetYaxis()->SetTitleOffset(0);
+   f11->GetYaxis()->SetTitleFont(42);
+   f11->SetParameter(0,48.48947);
+   f11->SetParError(0,3.347583);
+   f11->SetParLimits(0,0,0);
+   f11->SetParameter(1,12.40261);
+   f11->SetParError(1,0.0445876);
+   f11->SetParLimits(1,0,0);
+   f11->SetParameter(2,0.7764957);
+   f11->SetParError(2,0.04182928);
+   f11->SetParLimits(2,0,15.32594);
+   f11->SetParent(h1__1);
+   h1__1->GetListOfFunctions()->Add(f11);
+   
+   TPaveStats *ptstats = new TPaveStats(0.78,0.775,0.98,0.935,"brNDC");
+   ptstats->SetName("stats");
+   ptstats->SetBorderSize(1);
+   ptstats->SetFillColor(0);
+   ptstats->SetTextAlign(12);
+   ptstats->SetTextFont(42);
+   TText *ptstats_LaTex = ptstats->AddText("h1");
+   ptstats_LaTex->SetTextSize(0.0368);
+   ptstats_LaTex = ptstats->AddText("Entries = 575    ");
+   ptstats_LaTex = ptstats->AddText("Mean  =  12.92");
+   ptstats_LaTex = ptstats->AddText("Std Dev   =   1.53");
+   ptstats->SetOptStat(1111);
+   ptstats->SetOptFit(0);
+   ptstats->Draw();
+   h1__1->GetListOfFunctions()->Add(ptstats);
+   ptstats->SetParent(h1__1);
+
+   Int_t ci;      // for color index setting
+   TColor *color; // for color definition with alpha
+   ci = TColor::GetColor("#000099");
+   h1__1->SetLineColor(ci);
+   h1__1->GetXaxis()->SetLabelFont(42);
+   h1__1->GetXaxis()->SetLabelSize(0.035);
+   h1__1->GetXaxis()->SetTitleSize(0.035);
+   h1__1->GetXaxis()->SetTitleFont(42);
+   h1__1->GetYaxis()->SetLabelFont(42);
+   h1__1->GetYaxis()->SetLabelSize(0.035);
+   h1__1->GetYaxis()->SetTitleSize(0.035);
+   h1__1->GetYaxis()->SetTitleOffset(0);
+   h1__1->GetYaxis()->SetTitleFont(42);
+   h1__1->GetZaxis()->SetLabelFont(42);
+   h1__1->GetZaxis()->SetLabelSize(0.035);
+   h1__1->GetZaxis()->SetTitleSize(0.035);
+   h1__1->GetZaxis()->SetTitleFont(42);
+   h1__1->Draw("");
+   c1->Modified();
+   c1->cd();
+   c1->SetSelected(c1);
+}
