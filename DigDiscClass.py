@@ -21,3 +21,15 @@ class DigDiscClass:
         for vi,ti in zip(v,t): 
             if vi > self.vthr:
                 return ti
+                
+    def disc_pos(self,t,v):
+        for vi,ti in zip(v,t): 
+            if vi > self.vthr:
+                return True, ti
+        return False, 0
+
+    def disc_neg(self,t,v):
+        for vi,ti in zip(v,t): 
+            if vi < self.vthr:
+                return True, ti
+        return False, 0
