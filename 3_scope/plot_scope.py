@@ -11,11 +11,11 @@ import DigDiscClass
 import boxcar
 import cfd
 import zero_crossing
-from ROOT import TH1F
+from ROOT import TH1F, TF1
 
 # directory = '/home/tyler/pingudata/1200v/' # 10GSPS 
 directory = '/home/tyler/pingudata/1300v/' # 10GSPS
-NCNT = 1000  # Number of triggers to collect
+NCNT = 10  # Number of triggers to collect
 TAU = 8.     # First order analog filter time constant (ns)
 FGSPS = 0.25 # Sample rate (GSPS)
 VTHR = -2.0  # Discriminator threshold (mV)
@@ -70,9 +70,24 @@ for fname in os.listdir(directory):
         
 # tz = [tzi - 80 - 0.7055 for tzi in tz]
 tz = [tzi - 70 for tzi in tz]
-h1 = TH1F('h1','',200,-20,20)
+h1 = TH1F('h1','',400,-40,40)
 for tzi in tz: 
     if(tzi < 20 and tzi > -20):
         h1.Fill(tzi)
 
+hmean = h1.GetMean()
+hrms = h1.GetRMS()
+
+f1 = TF1('f1','gaus',-40,40)
+h1.Fit('f1')
+p0 = f1.GetParameter(0)
+p1 = f1.GetParameter(1)
+p2 = f1.GetParameter(2)
+
+
+fout = open("spread.txt",'a')
+sout = "directory=%s NCNT=%d TAU=%f FGSPS=%f VTHR=%f NAVG1=%f CFDD=%f CFDTHR=%f const=%f mean=%f sigma=%f HMEAN=%f HRMS=%f\n" % (directory,NCNT,TAU,FGSPS,VTHR,NAVG1,CFDD,CFDTHR,p0,p1,p2,hmean,hrms)
+print sout
+fout.write(sout)
+fout.close()
 h1.Draw()
