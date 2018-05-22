@@ -1,0 +1,37 @@
+import scipy.signal as signal
+import matplotlib.pyplot as plt
+import numpy as np
+
+# b, a = signal.butter(4, 100, 'low', analog=True)
+# w, h = signal.freqs(b, a)
+# plt.plot(w, 20 * np.log10(np.abs(h)), color='silver', ls='dashed')
+b1, a1 = signal.bessel(2, 125, 'low', analog=True)
+w1, h1 = signal.freqs(b1, a1)
+b2, a2 = signal.bessel(4, 125, 'low', analog=True)
+w2, h2 = signal.freqs(b2, a2)
+b3, a3 = signal.bessel(6, 125, 'low', analog=True)
+w3, h3 = signal.freqs(b3, a3)
+b4, a4 = signal.bessel(8, 125, 'low', analog=True)
+w4, h4 = signal.freqs(b4, a4)
+plt.plot(w1, 20 * np.log10(np.abs(h1)))
+plt.plot(w2, 20 * np.log10(np.abs(h2)))
+plt.plot(w3, 20 * np.log10(np.abs(h3)))
+plt.plot(w4, 20 * np.log10(np.abs(h4)))
+plt.xscale('log')
+plt.title('Bessel filter frequency response (with Butterworth)')
+plt.xlabel('Frequency [radians / second]')
+plt.ylabel('Amplitude [dB]')
+plt.margins(0, 0.1)
+plt.grid(which='both', axis='both')
+plt.axvline(100, color='green') # cutoff frequency
+plt.show()
+
+plt.figure()
+plt.plot(w[1:], -np.diff(np.unwrap(np.angle(h)))/np.diff(w))
+plt.xscale('log')
+plt.title('Bessel filter group delay')
+plt.xlabel('Frequency [radians / second]')
+plt.ylabel('Group delay [seconds]')
+plt.margins(0, 0.1)
+plt.grid(which='both', axis='both')
+plt.show()

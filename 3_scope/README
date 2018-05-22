@@ -1,0 +1,5 @@
+tz_scope:       analyze PMT data for zero crossing at fixed tau, FGSPS, NAVG1, CFDD, CFDTHR, etc...
+tau_scope:      plot PMT data over a range of tau (first order filter)
+navg1_scope:    plot PMT data over a range of box car average windows
+bessel_scope:   plot PMT data simulating a bessel antialiasing low pass filter
+bessel_compare: compare frequency response of bessel functions (bessel for linear phase)

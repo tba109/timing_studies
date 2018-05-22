@@ -3,6 +3,8 @@
 import numpy as np
 
 def boxcar(t,v,n): 
+    if(n==0): 
+        return t,v
     v1 = np.zeros(len(v)-n)
     t1 = np.zeros(len(t)-n)
     for i in range(len(v1)): 
