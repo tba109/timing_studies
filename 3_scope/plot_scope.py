@@ -17,7 +17,7 @@ from ROOT import TH1F, TF1
 directory = '/home/tyler/pingudata/1300v/' # 10GSPS
 NCNT = 1000  # Number of triggers to collect
 TAU = 8.     # First order analog filter time constant (ns)
-FGSPS = 0.5  # Sample rate (GSPS)
+FGSPS = 1  # Sample rate (GSPS)
 VTHR = -2.0  # Discriminator threshold (mV)
 NAVG1 = 2    # Box car averager 1 number of samples
 CFDD = 2     # CFD delay in clock cycles 
@@ -83,7 +83,6 @@ h1.Fit('f1')
 p0 = f1.GetParameter(0)
 p1 = f1.GetParameter(1)
 p2 = f1.GetParameter(2)
-
 
 fout = open("spread.txt",'a')
 sout = "directory=%s NCNT=%d TAU=%f FGSPS=%f VTHR=%f NAVG1=%f CFDD=%f CFDTHR=%f const=%f mean=%f sigma=%f HMEAN=%f HRMS=%f\n" % (directory,NCNT,TAU,FGSPS,VTHR,NAVG1,CFDD,CFDTHR,p0,p1,p2,hmean,hrms)
