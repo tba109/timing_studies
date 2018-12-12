@@ -18,7 +18,8 @@ class DigInterpClass:
         self.vthr=vthr
         self.n=n
 
-    def disc_interp(self,t,v):
+    # This doesn't interpolate: it fits a line and finds the rising edge. 
+    def disc_fit(self,t,v):
         # Fit the curves
         def f(x,m,b): 
             return m*x + b        
@@ -39,6 +40,11 @@ class DigInterpClass:
                 # print i
                 popt,pcov = curve_fit(f,t[ilow:ihigh],v[ilow:ihigh])
                 # return -popt[1]/popt[0]
-                return popt
-                
+                return popt                
     
+
+    def disc_interp(self,t,v):
+        for i in range(len(t)): 
+            if v[i] > self.vthr:
+                tx = ((t[i]-t[i-1])/(v[i]-v[i-1]))*(self.vthr-v[i]) + t[i] 
+                return tx
