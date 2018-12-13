@@ -12,7 +12,7 @@ from ROOT import TH1F
 # Waveform parameters
 # fsps = np.array([1.])
 # fsps = np.arange(1.,11.,0.5)
-fsps = [10.]
+fsps = [100.]
 Nwaves = 10000
 v0 = 0.
 # v1 = np.arange(10.,110.,10.)
@@ -38,9 +38,14 @@ tdisc_method = 'ddc'
 # plot_wv = True
 plot_wv = False
 
+# # Fit the curves
+# def f(x,m,b): 
+#     return m*x + b
+
 # Fit the curves
 def f(x,m,b): 
-    return m*x + b
+    return m*x
+
 
 sigma_t = np.zeros(len(sigma_v))
 for n in range(len(fsps)):
