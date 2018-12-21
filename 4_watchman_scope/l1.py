@@ -1,3 +1,5 @@
+# Fri Dec 21 10:24:07 EST 2018
+
 import numpy as np
 import matplotlib.pyplot as plt
 import sys
@@ -17,14 +19,13 @@ wc = 2.*np.pi*fc/fsps # Discrete radial frequency
 M = 4000              # number of points in the kernel
 
 ###################################################################
-# Sinc function for low pass filter ("ideal" LPF)
+# 1.) Sinc function for low pass filter
 n2 = np.arange(-N/2,N/2,1)
 h = [np.sin(wc*n2i)/(n2i*np.pi*wc) if n2i != 0 else 1./np.pi for n2i in n2]
 # print 'Sinc function for LPF'
 # plt.plot(h)
 # plt.show()
 
-###################################################################
 # Truncate and zero pad
 h2 = h[int(len(h)/2-M/2):int(len(h)/2+M/2)] # M points around 0
 for i in range(4002-len(h2)): # pad with zeros
@@ -33,7 +34,6 @@ for i in range(4002-len(h2)): # pad with zeros
 # plt.plot(h2)
  #plt.show()
 
-###################################################################
 # Blackman window
 blackman_window = [0.54 - 0.46*np.cos(2*np.pi*ni/M) for ni in np.arange(len(h2))]
 h2 = [h2i*bwi for h2i,bwi in zip(h2,blackman_window)]
@@ -41,8 +41,7 @@ h2 = [h2i*bwi for h2i,bwi in zip(h2,blackman_window)]
 # plt.plot(h2)
  #plt.show()
 
-###################################################################
-# FFT, etc
+# FFT, just to check
 T = N/fsps
 df = 1/T
 dw = 2*np.pi/T
@@ -78,18 +77,18 @@ for i in range(Nloops):
         ni+=1
     fin.close()
         
-    # This is important: subtract the baseline
+    # 2.) Subtract the baseline
     y2 = [yi - np.mean(y[0:500]) for yi in y]  
     # y3 = [y2i/abs(np.min(y2)) for y2i in y2]
     y3 = y2
     
-    # Convolve
+    # 3.) Convolve
     y4 = np.convolve(y3,h2)
     # y5 = [y4i/abs(np.min(y4)) for y4i in y4]
     y5 = y4*.01/.136
     y6 = y5[2000:6002]
     
-    # Discriminator
+    # 4.) Discriminator
     y7 = y6[500:1000]
     idx = 0.
     for y7i in y7:

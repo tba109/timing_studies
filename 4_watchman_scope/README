@@ -1,0 +1,11 @@
+plot_raw: plot the raw data (good for tuning cuts, waveforms)
+plot_fft: plot the FFT of the raw data
+l1:       Implement l1 cuts for selecting SPEs in a few steps: 
+	  1.) Create sinc LPF kernel with 4000 points and a 250MHz cutoff, centered and zero 
+	      padded, Blackman windowed
+	  2.) Baseline subtract raw data
+	  3.) Convolve with filter kernel
+	  4.) Use discriminator on window around the pulse, threshold is -0.25mV (~1/20 SPE)
+	  5.) Write these to file as l1. 
+	  6.) Make time plots to select SPEs in charge range -2.5E6 to -1.1E7. Find timing 
+	      resolution (main peak ~0.7ns).   
