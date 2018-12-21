@@ -12,7 +12,10 @@ def downsample(t,v,dsf=40):
     t2 = np.array([])
     v2 = np.array([])
     icnt = 0
-    for ti,vi in zip(t,v): 
+    istart = np.random.randint(0,dsf)
+    t1 = t[istart:]
+    v1 = v[istart:]
+    for ti,vi in zip(t1,v1): 
         if(icnt%dsf==0): 
             t2 = np.append(t2,ti)
             v2 = np.append(v2,vi)
