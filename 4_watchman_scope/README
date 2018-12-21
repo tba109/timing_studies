@@ -11,3 +11,6 @@ l1:       Implement l1 cuts for selecting SPEs in a few steps:
 	      resolution (main peak ~0.7ns).   
 a1:       Find the charge, amplitude, and time characteristics and figure out an average waveform
 	  shape. 
+a2:       Try to ignore double pulse by cutting out those that pass a -2mV threshold after 75ns
+l3:       Shift all of the waveforms so that their 50% crossing lines up. This gives a nice, aligned
+	  set of SPEs. 
