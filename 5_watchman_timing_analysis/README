@@ -1,0 +1,4 @@
+Find average waveform and fit it. 
+c*((exp(-(x-x0)/b1)+exp((x-x0)/b2))^p)
+
+a1.py: mainly find CFD, amplitude, charge. 
