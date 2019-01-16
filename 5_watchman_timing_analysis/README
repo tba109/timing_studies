@@ -1,4 +1,6 @@
 Find average waveform and fit it. 
 c*((exp(-(x-x0)/b1)+exp((x-x0)/b2))^p)
 
-a1.py: mainly find CFD, amplitude, charge. 
+a1.py:  mainly find CFD, amplitude, charge. Average waveform. Question: is trapezoidal integration better than rectangular integration, or vice versa? 
+        most probable amplitude = -6.5mV
+l3b.py: turn these into binary values, to simulate a 14b ADC. Also, allow the addition of noise (std ~ 2.5b to simulate digitizer), also baseline, etc. 
